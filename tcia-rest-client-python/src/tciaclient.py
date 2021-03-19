@@ -86,9 +86,9 @@ class TCIAClient:
         resp = self.execute(serviceUrl , queryParameters)
         return resp
     
-    def get_SOP_instance(self,seriesInstanceUid = None , outputFormat = "json" ):
+    def get_SOP_instance(self,SeriesInstanceUID = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_SOP_INSTANCE
-        queryParameters = {"SeriesInstanceUid" : seriesInstanceUid , "format" : outputFormat }
+        queryParameters = {"SeriesInstanceUid" : SeriesInstanceUID , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
         return resp
 
