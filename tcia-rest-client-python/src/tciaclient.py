@@ -94,30 +94,6 @@ class TCIAClient:
         return resp
    
 
-    def get_single_image(self , seriesInstanceUid ,  downloadPath, sopInstanceUid = None):
-        serviceUrl = self.baseUrl + "/query/" + self.GET_SINGLE_IMAGE
-        queryParameters = { "SeriesInstanceUID" : seriesInstanceUid, "SOPInstanceUID" : sopInstanceUid }
-        os.umask(0o002)
-        try:
-            file = os.path.join(downloadPath)
-            resp = self.execute( serviceUrl , queryParameters)
-            downloaded = 0
-            CHUNK = 256 * 10240
-            with open(file, 'wb') as fp:
-                while True:
-                    chunk = resp.read(CHUNK)
-                    downloaded += len(chunk)
-                    if not chunk: break
-                    fp.write(chunk)
-        except urllib.error.HTTPError as e:
-            print("HTTP Error:",e.code , serviceUrl)
-            return False
-        except urllib.error.URLError as e:
-            print("URL Error:",e.reason , serviceUrl)
-            return False
-
-        return resp
-
     def get_image(self , seriesInstanceUid , downloadPath, zipFileName):
         serviceUrl = self.baseUrl + "/query/" + self.GET_IMAGE
         queryParameters = { "SeriesInstanceUID" : seriesInstanceUid }
@@ -140,4 +116,4 @@ class TCIAClient:
             print("URL Error:",e.reason , serviceUrl)
             return False
 
-        return resp
+        return True
