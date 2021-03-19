@@ -94,7 +94,7 @@ class TCIAClient:
         return resp
    
 
-    def get_single_image(self , seriesInstanceUid , sopInstanceUid, downloadPath):
+    def get_single_image(self , seriesInstanceUid ,  downloadPath, sopInstanceUid = None):
         serviceUrl = self.baseUrl + "/query/" + self.GET_IMAGE
         queryParameters = { "SeriesInstanceUID" : seriesInstanceUid, "SOPInstanceUID" : sopInstanceUid }
         os.umask(0o002)
