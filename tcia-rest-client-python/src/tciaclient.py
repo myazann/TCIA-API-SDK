@@ -17,6 +17,7 @@ class TCIAClient:
     GET_PATIENT = "getPatient"
     GET_SERIES_SIZE = "getSeriesSize"
     CONTENTS_BY_NAME = "ContentsByName"
+    GET_SOP_INSTANCE = "getSOPInstanceUIDs"
 
     def __init__(self, baseUrl, resource):
         self.baseUrl = baseUrl + "/" + resource
@@ -82,6 +83,12 @@ class TCIAClient:
     def get_patient(self,collection = None , outputFormat = "json" ):
         serviceUrl = self.baseUrl + "/query/" + self.GET_PATIENT
         queryParameters = {"Collection" : collection , "format" : outputFormat }
+        resp = self.execute(serviceUrl , queryParameters)
+        return resp
+    
+    def get_SOP_instance(self,seriesInstanceUid = None , outputFormat = "json" ):
+        serviceUrl = self.baseUrl + "/query/" + self.GET_SOP_INSTANCE
+        queryParameters = {"SeriesInstanceUid" : seriesInstanceUid , "format" : outputFormat }
         resp = self.execute(serviceUrl , queryParameters)
         return resp
 
