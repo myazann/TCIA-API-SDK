@@ -116,7 +116,7 @@ class TCIAClient:
             print("URL Error:",e.reason , serviceUrl)
             return False
 
-        return True
+        return resp
 
     def get_image(self , seriesInstanceUid , downloadPath, zipFileName):
         serviceUrl = self.baseUrl + "/query/" + self.GET_IMAGE
@@ -140,4 +140,4 @@ class TCIAClient:
             print("URL Error:",e.reason , serviceUrl)
             return False
 
-        return True
+        return resp
