@@ -101,7 +101,6 @@ class TCIAClient:
         try:
             file = os.path.join(downloadPath)
             resp = self.execute( serviceUrl , queryParameters)
-            org_resp = resp
             downloaded = 0
             CHUNK = 256 * 10240
             with open(file, 'wb') as fp:
@@ -117,7 +116,7 @@ class TCIAClient:
             print("URL Error:",e.reason , serviceUrl)
             return False
 
-        return org_resp
+        return resp
 
     def get_image(self , seriesInstanceUid , downloadPath, zipFileName):
         serviceUrl = self.baseUrl + "/query/" + self.GET_IMAGE
